@@ -1,6 +1,7 @@
 import os
 import praw
 from dotenv import load_dotenv
+import pyttsx3
 
 # loading env variables
 load_dotenv()
@@ -20,4 +21,19 @@ reddit = praw.Reddit(
 # subreddit = reddit.subreddit('python')
 # for post in subreddit.hot(limit=5):
 #     print(post.title)
+
+# retrieving top weekly post
+subreddit = reddit.subreddit('confession')
+
+# make sure sfw
+post1 = None
+for post in subreddit.top(time_filter='year'):
+    if not post.over_18:
+        post1 = post
+        break
+
+if post1:
+    print(f"Title: {post1.title}")
+    print(f"Content: {post1.selftext}")
+
 
