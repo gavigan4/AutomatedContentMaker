@@ -1,7 +1,7 @@
 import os
 import praw
 from dotenv import load_dotenv
-import pyttsx3
+import json
 
 # loading env variables
 load_dotenv()
@@ -35,5 +35,15 @@ for post in subreddit.top(time_filter='year'):
 if post1:
     print(f"Title: {post1.title}")
     print(f"Content: {post1.selftext}")
+
+    # save post data
+    post_data = {
+        'title' : post1.title,
+        'content' : post1.selftext
+    }
+
+    # write json to be used in tts
+    with open('post_data.json', 'w') as file:
+        json.dump(post_data, file, indent=4)
 
 
