@@ -7,7 +7,7 @@ from elevenlabs import play, save
 # loading env variables
 load_dotenv()
 
-json_file = "post_data.json"
+json_file = "../post_data.json"
 
 client = ElevenLabs(
     api_key=os.getenv('ELEVEN_LABS_KEY')
@@ -45,10 +45,10 @@ def text_to_speech_from_json(json_file):
     audio = generate_audio(full_text)
 
     # Play the audio or save it to a file
-    play(audio)  # To play the generated audio
-    save(audio, "output.mp3")  # To save the audio as an MP3 file
+    # play(audio)  # To play the generated audio
+    save(audio, "../output.mp3")  # To save the audio as an MP3 file
 
 
 # Example usage
 if __name__ == "__main__":
-    text_to_speech_from_json('post_data.json')
+    text_to_speech_from_json('../post_data.json')
