@@ -1,1 +1,3 @@
-from important_stuff import postTTS,reddit_grab
+from important_stuff import postTTS
+
+postTTS.client

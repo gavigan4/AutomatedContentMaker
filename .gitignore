@@ -4,5 +4,7 @@
 .env
 venv
 
-post_data.json
+retrieved_stories.json
+
+post_data_test.json
 output.mp3

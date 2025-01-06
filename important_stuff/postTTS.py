@@ -1,5 +1,7 @@
 import json
 import os
+
+import elevenlabs
 from dotenv import load_dotenv
 from elevenlabs.client import ElevenLabs
 from elevenlabs import play, save
@@ -7,7 +9,7 @@ from elevenlabs import play, save
 # loading env variables
 load_dotenv()
 
-json_file = "../post_data.json"
+json_file = "../post_data_test.json"
 
 client = ElevenLabs(
     api_key=os.getenv('ELEVEN_LABS_KEY')
@@ -51,4 +53,4 @@ def text_to_speech_from_json(json_file):
 
 # Example usage
 if __name__ == "__main__":
-    text_to_speech_from_json('../post_data.json')
+    text_to_speech_from_json('../post_data_test.json')
