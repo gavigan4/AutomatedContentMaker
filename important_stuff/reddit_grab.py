@@ -17,7 +17,7 @@ reddit = praw.Reddit(
 )
 
 
-def check_and_add_post(post_id, file_path='retrieved_stories.json'):
+def check_and_add_post(post_id, file_path='../red_post_history.json'):
     try:
         # Load the IDs from the file
         with open(file_path, "r") as file:
@@ -57,5 +57,5 @@ if post1:
     }
 
     # write json to be used in tts later
-    with open('../post_data_test.json', 'w') as file:
+    with open('../temp_post_data.json', 'w') as file:
         json.dump(post_data, file, indent=4)
