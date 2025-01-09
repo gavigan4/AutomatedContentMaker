@@ -4,8 +4,7 @@
 .env
 venv
 
-retrieved_stories.json
-
 temp_post_data.json
+red_post_history.json
 output.mp3
 
