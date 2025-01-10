@@ -1,5 +1,6 @@
 import json
 import os
+from reddit_grab import post_data
 
 import elevenlabs
 from dotenv import load_dotenv
@@ -9,7 +10,7 @@ from elevenlabs import play, save
 # loading env variables
 load_dotenv()
 
-json_file = "../post_data_test.json"
+json_file = "../temp_post_data.json"
 
 client = ElevenLabs(
     api_key=os.getenv('ELEVEN_LABS_KEY')
@@ -51,6 +52,10 @@ def text_to_speech_from_json(json_file):
     save(audio, "../output.mp3")  # To save the audio as an MP3 file
 
 
+def text_to_speech_from_json_t(json_file):
+    print("success in making TTS")
+
+
 # Example usage
 if __name__ == "__main__":
-    text_to_speech_from_json('../post_data_test.json')
+    text_to_speech_from_json_t('../temp_post_data.json')
