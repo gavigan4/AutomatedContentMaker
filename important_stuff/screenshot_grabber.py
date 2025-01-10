@@ -32,7 +32,7 @@ bottom = top + size['height']
 cropped_image = image.crop((left, top, right, bottom))
 
 # Save the cropped screenshot
-cropped_image.save('element_screenshot.png')
+cropped_image.save('../element_screenshot.png')
 
 # Close the WebDriver
 driver.quit()
