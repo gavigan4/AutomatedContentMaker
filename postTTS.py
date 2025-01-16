@@ -7,8 +7,6 @@ from elevenlabs import save
 # loading env variables
 load_dotenv()
 
-json_file = "../temp_post_data.json"
-
 client = ElevenLabs(
     api_key=os.getenv('ELEVEN_LABS_KEY')
 )
@@ -46,7 +44,7 @@ def text_to_speech_from_json(json_file):
 
     # Play the audio or save it to a file
     # play(audio)  # To play the generated audio
-    save(audio, "../output.mp3")  # To save the audio as an MP3 file
+    save(audio, "media/voiceover.mp3")  # To save the audio as an MP3 file
 
 
 def text_to_speech_from_json_test():
@@ -55,5 +53,4 @@ def text_to_speech_from_json_test():
 
 # Example usage
 if __name__ == "__main__":
-    # text_to_speech_from_json('../temp_post_data.json')
-    text_to_speech_from_json_test()
+    text_to_speech_from_json('media/temp_post_data.json')

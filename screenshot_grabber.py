@@ -15,4 +15,4 @@ time.sleep(5)
 
 # dynamically inserts post id into xpath
 element = driver.find_element(by=By.XPATH, value=f"//*[@id='t3_{post1.id}']")
-element.screenshot("../post_screenshot.png")
+element.screenshot("media/post_screenshot.png")
