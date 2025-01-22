@@ -17,23 +17,29 @@ def load_text_from_json(json_file):
 
 def split_text_into_chunks(text, chunk_size=200):
     """
-    Split text into chunks of a given size while preserving whole words.
+       Split text into chunks of a given size while preserving whole sentences
+       and ensuring each chunk is less than the chunk size.
     """
-    words = text.split()
+    # Split text into sentences using punctuation marks as delimiters
+    sentences = re.split(r'(?<=[.!?])\s+', text)
     chunks = []
-    current_chunk = []
-    current_length = 0
+    current_chunk = ""
 
-    for word in words:
-        if current_length + len(word) + 1 > chunk_size:  # +1 for the space
-            chunks.append(' '.join(current_chunk))
-            current_chunk = []
-            current_length = 0
-        current_chunk.append(word)
-        current_length += len(word) + 1  # +1 for the space
+    for sentence in sentences:
+        if len(current_chunk) + len(sentence) + 1 <= chunk_size:  # +1 for space
+            # Add sentence to the current chunk
+            if current_chunk:
+                current_chunk += " "
+            current_chunk += sentence
+        else:
+            # Save the current chunk and start a new one
+            if current_chunk:
+                chunks.append(current_chunk)
+            current_chunk = sentence
 
+    # Add the last chunk if it exists
     if current_chunk:
-        chunks.append(' '.join(current_chunk))
+        chunks.append(current_chunk)
 
     return chunks
 
