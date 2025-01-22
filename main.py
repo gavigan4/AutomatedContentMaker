@@ -11,9 +11,9 @@ def run_pipeline():
         from screenshot_grabber import take_screenshot
         take_screenshot()
 
-        # Step 2: Make TTS MP3 file
-        from postTTS import text_to_speech_from_json
-        text_to_speech_from_json('media/temp_post_data.json')
+        # Step 2: Make TTS MP3 file with tik tok or elevenlabs
+        from tiktok_TTS import main
+        main()
 
         # Step 3: Create the video combining TTS, MP3 file, and background video
         from video_builder import build_clip, view_file

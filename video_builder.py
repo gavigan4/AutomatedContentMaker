@@ -60,5 +60,5 @@ def view_file(file_path):
 
 
 if __name__ == "__main__":
-    build_clip("media/post_screenshot.png", "media/voiceover.mp3", "media/gameplay_video.mp4", "media/final_video.mp4")
+    build_clip("media/post_screenshot.png", "media/combined_output.mp3", "media/gameplay_video.mp4", "media/final_video.mp4")
     view_file("media/final_video.mp4")
