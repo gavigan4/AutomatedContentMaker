@@ -20,8 +20,6 @@ def split_text_into_chunks(text, chunk_size=200):
        Split text into chunks of a given size while preserving whole sentences
        and ensuring each chunk is less than the chunk size.
     """
-    # Get rid of all *s
-    text.replace("*", "")
 
     # Split text into sentences using punctuation marks as delimiters
     sentences = re.split(r'(?<=[.!?])\s+', text)

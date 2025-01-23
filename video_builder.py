@@ -1,8 +1,8 @@
 import os
 import subprocess
-from moviepy import VideoFileClip, AudioFileClip, ImageClip, CompositeVideoClip
+from moviepy import *
 import platform
-
+from moviepy.video.fx.Loop import Loop
 
 def build_clip(image_path, audio_path, gameplay_path, final_path):
     try:
@@ -14,17 +14,23 @@ def build_clip(image_path, audio_path, gameplay_path, final_path):
         image_clip = ImageClip(image_path).with_duration(audio_clip.duration).with_audio(audio_clip)
 
         # Position the image clip at the upper center 100 pixels from top
+        # TODO find better way of setting image
         image_clip = image_clip.with_position(lambda t: ("center", 100))
 
-        # Create a composite video with the gameplay and image clip
+        # loop background video to fit length of image clip.
+        loop_effect = Loop(duration=image_clip.duration)
+
+        gameplay_clip = loop_effect.apply(gameplay_clip)
+
+        gameplay_clip = gameplay_clip.with_duration(image_clip.duration)
         composite_clip = CompositeVideoClip([gameplay_clip, image_clip])
-        composite_clip = composite_clip.with_duration(min(gameplay_clip.duration, image_clip.duration))
+        composite_clip = composite_clip.with_duration(image_clip.duration)
+
+        # TODO cropping the composite video to correct aspect ratio
 
         # Use a temporary output file for the composite video
         temp_output = "temp_output.mp4"
         composite_clip.write_videofile(temp_output, fps=24)
-
-        # cropping the composite video to correct aspect ratio
 
         # Normalize audio in the final output
         os.makedirs(os.path.dirname(final_path), exist_ok=True)
@@ -60,5 +66,6 @@ def view_file(file_path):
 
 
 if __name__ == "__main__":
-    build_clip("media/post_screenshot.png", "media/combined_output.mp3", "media/gameplay_video.mp4", "media/final_video.mp4")
+    build_clip("media/post_screenshot.png", "media/combined_output.mp3", "media/andrew.mp4",
+               "media/final_video.mp4")
     view_file("media/final_video.mp4")

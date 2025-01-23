@@ -17,9 +17,8 @@ def run_pipeline():
 
         # Step 3: Create the video combining TTS, MP3 file, and background video
         from video_builder import build_clip, view_file
-        build_clip("media/post_screenshot.png", "media/voiceover.mp3", "media/gameplay_video.mp4",
+        build_clip("media/post_screenshot.png", "media/voiceover.mp3", "media/andrew.mp4",
                    "media/final_video.mp4")
-        view_file("media/final_video.mp4")
 
         print("All processing completed successfully!")
         return True

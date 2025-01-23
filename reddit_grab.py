@@ -56,8 +56,11 @@ if post1:
         'content': post1.selftext
     }
 
+    # get rid of *s in post data
+    for key, value in post_data.items():
+        if isinstance(value, str):
+            post_data[key] = value.replace("*", "")
+
     # write json to be used in tts later
     with open('media/temp_post_data.json', 'w') as file:
         json.dump(post_data, file, indent=4)
-
-
