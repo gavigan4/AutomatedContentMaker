@@ -1,5 +1,8 @@
 import requests, base64, random, argparse, os, playsound, sys, time, re, textwrap, json
+from dotenv import load_dotenv
 from constants import voices
+
+load_dotenv()
 
 API_BASE_URL = f"https://api16-normal-useast5.us.tiktokv.com/media/api/text/speech/invoke/"
 USER_AGENT = f"com.zhiliaoapp.musically/2022600030 (Linux; U; Android 7.1.2; es_ES; SM-G988N; " \
@@ -57,14 +60,14 @@ def delete_chunk_files(output_dir):
 
 
 # Default settings - modify these values
-DEFAULT_SESSION_ID = "4c9e249999d6abb3ee7e079ad719bea4"  # Replace with your session ID
+DEFAULT_SESSION_ID = os.getenv("SESSION_ID")  # Replace with your session ID
 DEFAULT_VOICE = "en_uk_003"
 DEFAULT_TEXT = load_text_from_json('media/temp_post_data.json')
 DEFAULT_OUTPUT_FILE = "voice.mp3"
 DEFAULT_PLAY_SOUND = False
 
 
-def tts(session_id: str, text_speaker: str = "es_mx_002", req_text: str = "TikTok Text To Speech",
+def tts(session_id: str, text_speaker: str = "en_us_rocket", req_text: str = "TikTok Text To Speech",
         filename: str = 'voice.mp3', play: bool = False):
     req_text = req_text.replace("+", "plus")
     req_text = req_text.replace(" ", "+")
