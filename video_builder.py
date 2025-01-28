@@ -4,6 +4,7 @@ from moviepy import *
 import platform
 from moviepy.video.fx.Loop import Loop
 
+
 def build_clip(image_path, audio_path, gameplay_path, final_path):
     try:
         # Load the gameplay background video
